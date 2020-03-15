@@ -1,0 +1,99 @@
+1. Sort all employees by their salary (high to low). Who is the highest-paid employee? 
+
+Answer: Steven King
+Query: 
+select *
+
+from hr.employees
+
+where rownum <=1
+order by salary desc 
+
+	
+2. Who is the highest-paid employee with a name starting with the letter A?
+
+Answer: 
+Query: 
+select*
+
+from hr.employees
+
+where first_name like 'A%' and rownum <=1
+
+order by salary desc
+
+
+3. How many employees are in the IT Department?
+
+	Answer:5
+	Query: 
+select *
+
+from hr.employees
+or
+where department_id=60
+
+4. How many employees are in Marketing or Human Resources that have a salary higher than 15000?
+
+Answer:
+Query: select *
+
+from hr.employees
+
+where salary > 15000 and department_id=20 or department_id=40
+
+5. How many employees have a hire date in 1997? (Use to_date function as explained in video “Using WHERE to filter dates”)
+
+Answer:
+Query: 
+select *
+from 
+hr.job_history
+
+where start_date > ('01-JAN-97') and start_date < ('31-DEC-97') 
+	
+6. How many jobs have a salary range that encapsulates 5000?
+
+Answer:
+Query:  
+
+
+7. Select all employees with a salary less than 5000 and calculate a new column that would give each of these employees a 20% raise. Add a second column that also calculates the amount of the raise (new salary - old salary). Please alias your columns. 
+
+Answer:
+Query: SELECT employee_id, first_name, last_name, salary, salary * 0.2 AS salary_raise, salary + (salary * 0.2) AS salary_plus_raise
+FROM hr.employees
+WHERE salary < 5000ORDER BY salary DESC;
+
+
+
+8. How many company locations are in either the United States or Canada?
+
+Answer:
+Query:  
+select *
+
+from HR.locations
+
+where country_id = 'US' or country_id= 'CA'
+
+
+9. How many employees have a hire date in the 1990’s?
+
+Answer:
+Query:  select *
+
+from HR.job_history
+
+where start_date > ('01-JAN-90') and start_date < ('31-DEC-99') 
+	
+
+
+10. How many unique/distinct countries does there exist a company location?
+
+Answer:
+Query:  select country_id, count(*)
+
+from hr.locations
+
+group by country_id
